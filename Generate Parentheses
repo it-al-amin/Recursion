@@ -1,2 +1,30 @@
-Given n pairs of parentheses, 
-write a function to generate all combinations of well-formed parentheses.
+/*Given n pairs of parentheses, 
+write a function to generate all combinations of well-formed parentheses.*/
+//Solution
+
+class Solution {
+    vector<string>v;
+   
+    void solve(string& op, int i, int j) {
+        if (i == 0 && j == 0) {
+            v.push_back(op);
+            return;
+        }
+        if (i > 0) {
+            op.push_back('(');
+            solve(op, i - 1, j);
+            op.pop_back();  // Backtrack
+        }
+        if (i < j) {
+            op.push_back(')');
+            solve(op, i, j - 1);
+            op.pop_back();  // Backtrack
+        }
+    }
+public:
+    vector<string> generateParenthesis(int n) {
+    string op = "";  // Use an equal sign here, not a comma
+        solve(op, n, n);
+        return v;
+    }
+};
