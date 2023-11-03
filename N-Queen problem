@@ -29,7 +29,7 @@ class Solution{
          j=c;
          while(i>=0&&j>=0)
          {
-             if(q[i--][j--]==1)//left upper diagonal
+             if(q[i--][j--]==1)// chacked left upper diagonal
              {
                  return false;
              }
@@ -38,7 +38,7 @@ class Solution{
          j=c;
          while(i<m&&j<m)
          {
-             if(q[i++][j++]==1)//right lower diagonal
+             if(q[i++][j++]==1)//chacked right lower diagonal
              {
                  return false;
              }
@@ -47,14 +47,14 @@ class Solution{
          j=c;
          while(i>=0&&j<m)
          {
-             if(q[i--][j++]==1)//right upper diagonal
+             if(q[i--][j++]==1)// chacked right upper diagonal
              {
                  return false;
              }
          }
          i=r;
          j=c;
-         while(i<m&&j>=0)//left lower diagonal
+         while(i<m&&j>=0)// chacked left lower diagonal
          {
              if(q[i++][j--]==1)
              {
