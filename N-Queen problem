@@ -1,0 +1,99 @@
+/*
+
+The n-queens puzzle is the problem of placing n queens on a (n×n) chessboard
+such that no two queens can attack each other.
+Given an integer n, find all distinct solutions to the n-queens puzzle. 
+Each solution contains distinct board configurations of the n-queens’ placement, 
+where the solutions are a permutation of [1,2,3..n] in increasing order,
+here the number in the ith place denotes that the ith-column queen is placed in the row with that number.
+For eg below figure represents a chessboard [3 1 4 2].
+
+*/
+//Solution
+
+class Solution{
+    int m;
+     vector<vector<int>>v;
+     bool isvalid(int c,int r,vector<vector<int>>&q)
+     {
+           int i,j;
+         for(i=0;i<m;i++)
+         {
+             if(q[i][c]==1||q[r][i]==1)//same col or raw have already
+             {
+                 return false;
+             }
+         }
+       
+         i=r;
+         j=c;
+         while(i>=0&&j>=0)
+         {
+             if(q[i--][j--]==1)//left upper diagonal
+             {
+                 return false;
+             }
+         }
+         i=r;
+         j=c;
+         while(i<m&&j<m)
+         {
+             if(q[i++][j++]==1)//right lower diagonal
+             {
+                 return false;
+             }
+         }
+         i=r;
+         j=c;
+         while(i>=0&&j<m)
+         {
+             if(q[i--][j++]==1)//right upper diagonal
+             {
+                 return false;
+             }
+         }
+         i=r;
+         j=c;
+         while(i<m&&j>=0)//left lower diagonal
+         {
+             if(q[i++][j--]==1)
+             {
+                 return false;
+             }
+         }
+         return true;
+         
+     }
+    void solve(vector<int>&p,int r,vector<vector<int>>&q)
+    {
+        if(r>m||p.size()==m)
+        {
+            if(p.size()==m){
+                
+            v.push_back(p);
+            
+            }
+            return;
+        }
+        for(int c=1;c<=m;c++)//col
+        {
+            if(isvalid(c-1,r-1,q))
+            {
+                p.push_back(c);
+                q[r-1][c-1]=1;
+                solve(p,r+1,q);
+                p.pop_back();//Baktracking
+                q[r-1][c-1]=0;//Reset 
+            }
+        }
+    }
+public:
+    vector<vector<int>> nQueen(int n) {
+        // code here
+       vector<int>p;
+       vector<vector<int>>q(n+1,vector<int>(n+1,0));
+        m=n;
+        solve(p,1,q);
+        return v;
+    }
+};
