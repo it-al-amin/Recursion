@@ -36,7 +36,7 @@ class Solution {
         {
             return dp[i];
         }
-        int ways=0,way2=0;
+        int ways=0;
         ways+=solve(x,i+1);//take one by one 
         if(i+1<x.size()&&(x[i]=='2'&&x[i+1]<='6'||x[i]=='1'&&x[i+1]<='9'))//take 2 indices and jump next.
         {
