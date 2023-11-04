@@ -11,6 +11,11 @@ encoded to numbers using the following mapping:
 You are an FBI agent. You have to determine the total number of ways 
 that message can be decoded, as the answer can be large return the answer modulo 109 + 7.
 
+Input: str = "123"
+Output: 3
+Explanation: "123" can be decoded as "ABC"(123),
+"LC"(12 3) and "AW"(1 23).
+
 */
 
 class Solution {
