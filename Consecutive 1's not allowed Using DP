@@ -1,0 +1,29 @@
+class Solution{
+   int MOD=1e9+7;
+public:
+	// #define ll long long
+int solve(int n,vector<ll
+    if(n==1)
+    {
+        return 2;
+    }
+    if(n==2)
+    {
+        return 3;
+    }
+    if(dp[n]!=-1)
+    {
+        return dp[n];
+    }
+    
+    return dp[n]=(solve(n-1,dp)%MOD+solve(n-2,dp)%MOD)%MOD;
+}
+	
+	ll countStrings(int n) {
+	    // code here
+	    vector<ll>dp(n+1,-1);
+	    return 1LL*solve(n,dp);
+	
+	   
+	}
+};
